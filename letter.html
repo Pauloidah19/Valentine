@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Baby</title>
+    <style>
+        body { 
+            background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%); 
+            font-family: 'Georgia', serif; 
+            color: #444; 
+            margin: 0;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .letter-container { 
+            max-width: 500px; 
+            background: white; 
+            padding: 40px; 
+            margin: 50px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            animation: fadeIn 3s ease-in; 
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        h2 { color: #ff4d6d; font-weight: normal; margin-bottom: 25px; }
+        p { margin-bottom: 20px; font-size: 1.15rem; line-height: 1.8; }
+        .signature { text-align: right; font-style: italic; margin-top: 40px; color: #ff4d6d; font-size: 1.2rem; }
+
+        .heart {
+            position: fixed;
+            color: #ff4d6d;
+            font-size: 20px;
+            user-select: none;
+            z-index: 1;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(30px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .audio-controls {
+            margin-top: 20px;
+            z-index: 2;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        button {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+
+    <div id="hearts-container"></div>
+
+    <div class="letter-container">
+        <h2>My baby ❤️</h2>
+        <p>Loving you feels calm and sure - not rushed, not forced. Just right.</p>
+        <p>You bring warmth into my life in ways you may not even notice, and I am grateful for you every single day.</p>
+        <p>This Valentine's Day is special, but choosing you is something I would gladly do every day.</p>
+        
+        <div class="signature">
+            With all my affection,<br>
+            - Paulo
+        </div>
+
+        <div class="audio-controls">
+            <p style="font-size: 0.8rem; margin-bottom: 10px; color: #888;">♫ Moonlight - Ali Gatie</p>
+            <audio id="bgMusic" loop>
+                <source src="moonlight.mp3" type="audio/mpeg">
+            </audio>
+            <button onclick="document.getElementById('bgMusic').play()">▶ Play Our Song</button>
+        </div>
+    </div>
+
+    <script>
+        function createHeart() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            container.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 400);
+    </script>
+
+</body>
+</html>

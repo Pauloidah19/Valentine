@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Japari ❤️</title>
+    <style>
+        body { 
+            background-color: #ffeef2; 
+            font-family: 'Georgia', serif; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
+            overflow: hidden; 
+        }
+        .card { 
+            text-align: center; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+            width: 90%; 
+            max-width: 450px;
+            z-index: 10;
+        }
+        h1 { color: #d63384; margin-bottom: 30px; font-size: 1.8rem; }
+        .btn-container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 15px; 
+            min-height: 150px; 
+        }
+        button { 
+            padding: 15px 30px; 
+            font-size: 1.1rem; 
+            border-radius: 10px; 
+            border: none; 
+            cursor: pointer; 
+            transition: all 0.2s ease-in-out; 
+        }
+        #yesBtn { background-color: #ff4d6d; color: white; z-index: 100; }
+        #noBtn { background-color: #6c757d; color: white; position: absolute; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 id="question">Will you be my Valentine? ❤️</h1>
+        <div class="btn-container">
+            <button id="yesBtn" onclick="location.href='letter.html'">YES!</button>
+            <button id="noBtn" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Name Personalization Logic
+        const urlParams = new URLSearchParams(window.location.search);
+        const herName = urlParams.get('name') || "Japari"; // Defaults to Japari if no name in link
+
+        document.getElementById('question').innerText = Will you be my Valentine, ${herName}? ❤️;
+
+        // 2. Growing Yes Button & Moving No Button Logic
+        let yesSize = 1.1; 
+        
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+
+            // Move the "No" button
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+
+            // Make the "Yes" button bigger
+            yesSize += 0.3;
+            yesBtn.style.transform = scale(${yesSize});
+            
+            // Optional: Change text if she keeps trying to say No
+            if(yesSize > 3) {
+                document.getElementById('noBtn').innerText = "Try again!";
+            }
+        }
+    </script>
+</body>
+</html>
